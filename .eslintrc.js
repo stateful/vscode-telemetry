@@ -29,7 +29,7 @@ module.exports = {
         'import/no-unresolved': 0,
         'import/named': 2,
         'import/namespace': 2,
-        'import/default': 2,
+        'import/default': 0,
         'import/export': 2,
     }
 }

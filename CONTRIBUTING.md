@@ -1,6 +1,6 @@
-# Contributing to `XXX`
+# Contributing to `vscode-telemetry`
 
-**Thank you for your interest in `XXX`. Your contributions are highly welcome.**
+**Thank you for your interest in `vscode-telemetry`. Your contributions are highly welcome.**
 
 There are multiple ways of getting involved:
 
@@ -52,13 +52,13 @@ To build and work on this project you need to install:
 To get the code base, have [git](https://git-scm.com/downloads) installed and run:
 
 ```sh
-$ git clone git@github.com:saucelabs/node-saucelabs.git
+$ git clone git@github.com:stateful/vscode-telemetry.git
 ```
 
 then ensure to install all project dependencies:
 
 ```sh
-$ cd node-saucelabs
+$ cd vscode-telemetry
 $ npm install
 ```
 
@@ -86,7 +86,7 @@ $ npm run test
 
 ### TypeScript Type Definitions
 
-The type definitions for this package are automatically generated from the OpenAPI specs in `/apis` as `/build/index.d.ts`. We use a [node script](https://github.com/saucelabs/node-saucelabs/blob/main/scripts/generate-typings.js) to automate this when you build the project.
+The type definitions for this package are automatically generated from the OpenAPI specs in `/apis` as `/build/index.d.ts`. We use a [node script](https://github.com/stateful/vscode-telemetry/blob/main/scripts/generate-typings.js) to automate this when you build the project.
 
 ### Commit messages
 Your commit messages ideally can answer two questions: what changed and why. The subject line should feature the “what” and the body of the commit should describe the “why”.
