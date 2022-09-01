@@ -24,13 +24,13 @@ export class TangleTelemetryReporter extends BaseTelemetryReporter {
         this.reporter = {
             telemetryLevel: 'all',
             dispose: () => Promise.resolve({}),
-            sendTelemetryEvent: handlerFunction('sendTelemetryEvent'),
-            sendRawTelemetryEvent: handlerFunction('sendRawTelemetryEvent'),
-            sendDangerousTelemetryEvent: handlerFunction('sendDangerousTelemetryEvent'),
-            sendTelemetryErrorEvent: handlerFunction('sendTelemetryErrorEvent'),
-            sendDangerousTelemetryErrorEvent: handlerFunction('sendDangerousTelemetryErrorEvent'),
-            sendTelemetryException: handlerFunction('sendTelemetryException'),
-            sendDangerousTelemetryException: handlerFunction('sendDangerousTelemetryException')
+            sendTelemetryEvent: handlerFunction('sendEvent'),
+            sendRawTelemetryEvent: handlerFunction('sendRawEvent'),
+            sendDangerousTelemetryEvent: handlerFunction('sendDangerousEvent'),
+            sendTelemetryErrorEvent: handlerFunction('sendErrorEvent'),
+            sendDangerousTelemetryErrorEvent: handlerFunction('sendDangerousErrorEvent'),
+            sendTelemetryException: handlerFunction('sendException'),
+            sendDangerousTelemetryException: handlerFunction('sendDangerousException')
         }
         return this.reporter
     }

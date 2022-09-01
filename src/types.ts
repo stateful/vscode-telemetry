@@ -4,12 +4,12 @@ import type {
     TelemetryEventMeasurements
 } from '@vscode/extension-telemetry'
 
-export type EventTypes = 'sendTelemetryEvent' | 'sendRawTelemetryEvent' | 'sendDangerousTelemetryEvent' | 'sendTelemetryErrorEvent' | 'sendDangerousTelemetryErrorEvent' | 'sendTelemetryException' | 'sendDangerousTelemetryException'
+export type EventTypes = 'sendEvent' | 'sendRawEvent' | 'sendDangerousEvent' | 'sendErrorEvent' | 'sendDangerousErrorEvent' | 'sendException' | 'sendDangerousException'
 
 export interface Events {
     __telemetryEvent__: {
         eventType: EventTypes
-        eventName: string | Error
+        eventName: string & Error
         properties?: TelemetryEventProperties | RawTelemetryEventProperties
         measurements?: TelemetryEventMeasurements
         sanitize?: boolean

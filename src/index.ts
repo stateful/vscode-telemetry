@@ -1,7 +1,7 @@
 import vscode from 'vscode'
 
 export * from './extension/TelemetryReporter'
-export * from './TelemetryViewProvider'
+export * from './extension/TelemetryViewProvider'
 
 export const createWebviewTelemetryPanel = (
     viewType: string,
