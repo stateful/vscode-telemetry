@@ -1,7 +1,7 @@
 {
   "name": "vscode-telemetry",
   "version": "0.0.0",
-  "description": "A helper package for VS Code developers to send telemetry events from extension host and any webview.",
+  "description": "A helper package for VS Code developers to send telemetry events from the extension host and any webview.",
   "author": "Christian Bromann <christian@stateful.com>",
   "license": "MIT",
   "homepage": "https://github.com/stateful/vscode-telemetry#readme",
