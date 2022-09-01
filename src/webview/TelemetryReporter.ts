@@ -1,5 +1,4 @@
-import Channel from 'tangle/webviews'
-import type { Webview } from 'vscode'
+import type { WebviewApi } from 'vscode-webview'
 import type {
     TelemetryEventProperties,
     RawTelemetryEventProperties,
@@ -7,21 +6,19 @@ import type {
 } from '@vscode/extension-telemetry'
 
 import { BaseTelemetryReporter } from '../BaseTelemetryReporter.js'
-import { CHANNEL_NAME } from '../constants'
 import type { Events, EventTypes } from '../types'
 
 export class TangleTelemetryReporter extends BaseTelemetryReporter {
-    static configure (vscode: Webview) {
-        const channel = new Channel<Events>(CHANNEL_NAME)
-        const client = channel.attach(vscode)
-
+    static configure (vscode: WebviewApi<unknown>) {
         function handlerFunction (eventType: EventTypes) {
             return (
                 eventName: string | Error,
                 properties?: TelemetryEventProperties | RawTelemetryEventProperties,
                 measurements?: TelemetryEventMeasurements,
                 sanitize?: boolean
-            ) => client.emit('telemetryEvent', { eventType, eventName, properties, measurements, sanitize })
+            ) => vscode.postMessage(<Events>{
+                __telemetryEvent__: { eventType, eventName, properties, measurements, sanitize }
+            })
         }
 
         this.reporter = {

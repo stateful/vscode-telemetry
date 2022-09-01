@@ -1,0 +1,7 @@
+{
+  "name": "webview",
+  "description": "Subpackage handling telemetry reporting in webviews",
+  "module": "../build/webview.js",
+  "main": "../build/webview.js",
+  "types": "../build/webview/index.d.ts"
+}

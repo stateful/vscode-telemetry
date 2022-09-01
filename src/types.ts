@@ -7,7 +7,7 @@ import type {
 export type EventTypes = 'sendTelemetryEvent' | 'sendRawTelemetryEvent' | 'sendDangerousTelemetryEvent' | 'sendTelemetryErrorEvent' | 'sendDangerousTelemetryErrorEvent' | 'sendTelemetryException' | 'sendDangerousTelemetryException'
 
 export interface Events {
-    telemetryEvent: {
+    __telemetryEvent__: {
         eventType: EventTypes
         eventName: string | Error
         properties?: TelemetryEventProperties | RawTelemetryEventProperties

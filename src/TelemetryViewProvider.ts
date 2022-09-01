@@ -1,14 +1,15 @@
 import vscode from 'vscode'
-// import { TelemetryReporter } from './TelemetryReporter'
 
 export class TelemetryViewProvider implements vscode.WebviewViewProvider {
-    resolveWebviewView (webviewView: vscode.WebviewView, context: vscode.WebviewViewResolveContext, token: vscode.CancellationToken) {
-        this.resolveWebviewTelemetryView(webviewView, context, token)
-        webviewView.webview.html += 'here I come'
-    }
-
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     resolveWebviewTelemetryView (webviewView: vscode.WebviewView, context: vscode.WebviewViewResolveContext, token: vscode.CancellationToken) {
-        throw new Error ('resolveWebviewTelemetryView not implemented')
+        throw new Error ('resolveWebviewTelemetryView not implemented!')
+    }
+
+    async resolveWebviewView (webviewView: vscode.WebviewView, context: vscode.WebviewViewResolveContext, token: vscode.CancellationToken) {
+        await this.resolveWebviewTelemetryView(webviewView, context, token)
+        webviewView.webview.onDidReceiveMessage((e) => {
+            console.log(321, e)
+        })
     }
 }

@@ -4,7 +4,6 @@ import path from 'node:path'
 import resolve from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
 import commonjs from '@rollup/plugin-commonjs'
-import replace from '@rollup/plugin-replace'
 
 import cleanup from 'rollup-plugin-cleanup'
 import { terser } from 'rollup-plugin-terser'
@@ -31,7 +30,11 @@ const webview = {
     },
     external: ['vscode'],
     plugins: [
-        typescript({ tsconfig: './tsconfig.json' }),
+        typescript({
+            tsconfig: './tsconfig.json',
+            declarationDir: 'build',
+            compilerOptions
+        }),
         resolve({ extensions, browser: true }),
     ]
 }
@@ -59,20 +62,6 @@ const esm = {
         }),
         createPackageJSON(),
         cleanup({ comments: 'none' }),
-        replace({
-            preventAssignment: true,
-            __WEBVIEW_SCRIPT__: () => {
-                return fs
-                    .readFileSync(path.join(__dirname, 'build', 'webview.js'))
-                    .toString()
-                    /**
-                     * the rxjs dep from tangle contains line breaks within string that
-                     * will be rendered as actual line breaks and cause the script to fail
-                     */
-                    .replace('unsubscription:\\n"', 'unsubscription:"')
-                    .replace('.join("\\n  ")', '.join("  ")')
-            }
-        })
     ],
     external: ['vscode']
 }
