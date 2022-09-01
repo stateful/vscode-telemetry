@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@types/vscode": "^1.70.0",
-    "@vscode/extension-telemetry": "^0.6.2"
+    "@vscode/extension-telemetry": "^0.6.2",
+    "tangle": "^2.1.0"
   }
 }

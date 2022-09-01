@@ -1,11 +1,18 @@
-import vscode from 'vscode'
-import OriginalTelemetryReporter, { TelemetryEventProperties, RawTelemetryEventProperties, TelemetryEventMeasurements } from '@vscode/extension-telemetry'
+import type TelemetryReporter from '@vscode/extension-telemetry'
+import type {
+    TelemetryEventProperties,
+    RawTelemetryEventProperties,
+    TelemetryEventMeasurements
+} from '@vscode/extension-telemetry'
 
-export class TelemetryReporter {
-    static #reporter: OriginalTelemetryReporter | undefined
+/**
+ * Base Telemetry reporter providing an interface to send telemetry events
+ */
+export class BaseTelemetryReporter {
+    protected static reporter: TelemetryReporter | undefined
 
     static #ensureToBeConfigured () {
-        if (!this.#reporter) {
+        if (!this.reporter) {
             throw new Error('TelemetryReporter was not configured, call "TelemetryReporter.configure(context)" first!')
         }
     }
@@ -19,7 +26,7 @@ export class TelemetryReporter {
      */
     static sendEvent(eventName: string, properties?: TelemetryEventProperties, measurements?: TelemetryEventMeasurements) {
         this.#ensureToBeConfigured()
-        this.#reporter!.sendTelemetryEvent(eventName, properties, measurements)
+        this.reporter!.sendTelemetryEvent(eventName, properties, measurements)
     }
 
     /**
@@ -30,7 +37,7 @@ export class TelemetryReporter {
      */
     static sendRawEvent(eventName: string, properties?: RawTelemetryEventProperties, measurements?: TelemetryEventMeasurements) {
         this.#ensureToBeConfigured()
-        this.#reporter!.sendRawTelemetryEvent(eventName, properties, measurements)
+        this.reporter!.sendRawTelemetryEvent(eventName, properties, measurements)
     }
 
     /**
@@ -43,7 +50,7 @@ export class TelemetryReporter {
      */
     static sendDangerousEvent(eventName: string, properties?: TelemetryEventProperties, measurements?: TelemetryEventMeasurements, sanitize?: boolean) {
         this.#ensureToBeConfigured()
-        this.#reporter!.sendDangerousTelemetryEvent(eventName, properties, measurements, sanitize)
+        this.reporter!.sendDangerousTelemetryEvent(eventName, properties, measurements, sanitize)
     }
 
     /**
@@ -55,7 +62,7 @@ export class TelemetryReporter {
      */
     static sendErrorEvent(eventName: string, properties?: TelemetryEventProperties, measurements?: TelemetryEventMeasurements) {
         this.#ensureToBeConfigured()
-        this.#reporter!.sendTelemetryErrorEvent(eventName, properties, measurements)
+        this.reporter!.sendTelemetryErrorEvent(eventName, properties, measurements)
     }
 
     /**
@@ -68,7 +75,7 @@ export class TelemetryReporter {
      */
     static sendDangerousErrorEvent(eventName: string, properties?: TelemetryEventProperties, measurements?: TelemetryEventMeasurements, sanitize?: boolean) {
         this.#ensureToBeConfigured()
-        this.#reporter!.sendDangerousTelemetryErrorEvent(eventName, properties, measurements, sanitize)
+        this.reporter!.sendDangerousTelemetryErrorEvent(eventName, properties, measurements, sanitize)
     }
 
     /**
@@ -79,7 +86,7 @@ export class TelemetryReporter {
      */
     static sendException(error: Error, properties?: TelemetryEventProperties, measurements?: TelemetryEventMeasurements) {
         this.#ensureToBeConfigured()
-        this.#reporter!.sendTelemetryException(error, properties, measurements)
+        this.reporter!.sendTelemetryException(error, properties, measurements)
     }
 
     /**
@@ -92,13 +99,6 @@ export class TelemetryReporter {
      */
     static sendDangerousException(error: Error, properties?: TelemetryEventProperties, measurements?: TelemetryEventMeasurements, sanitize?: boolean) {
         this.#ensureToBeConfigured()
-        this.#reporter!.sendDangerousTelemetryException(error, properties, measurements, sanitize)
-    }
-
-    static configure (context: vscode.ExtensionContext, key: string) {
-        const { name, publisher, version } = context.extension.packageJSON
-        const extensionId = `${publisher}.${name}`
-        this.#reporter = new OriginalTelemetryReporter(extensionId, version, key)
-        return this.#reporter
+        this.reporter!.sendDangerousTelemetryException(error, properties, measurements, sanitize)
     }
 }
