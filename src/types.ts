@@ -13,6 +13,6 @@ export interface TelemetryPayload {
     sanitize?: boolean
 }
 
-export interface Events {
+export interface TelemetryEvent {
     __telemetryEvent__: TelemetryPayload
 }

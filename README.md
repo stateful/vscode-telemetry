@@ -1,4 +1,4 @@
-VS Code Telemetry
+VS Code Telemetry [![Test Changes](https://github.com/stateful/vscode-telemetry/actions/workflows/test.yml/badge.svg)](https://github.com/stateful/vscode-telemetry/actions/workflows/test.yml)
 =================
 
 > A helper package for VS Code developers to send telemetry events from the extension host and any webview.
@@ -76,7 +76,7 @@ import { TelemetryReporter } from 'vscode-telemetry';
 
 export class SomeController {
     private someMethod () {
-        TelemetryReporter.sendEvent('eventName', { some: 'property' })
+        TelemetryReporter.sendTelemetryEvent('eventName', { some: 'property' })
         // ...
     }
 }
@@ -92,7 +92,7 @@ import { TelemetryReporter } from 'vscode-telemetry/webview';
 const vscode = acquireVsCodeApi()
 const reporter = TelemetryReporter.configure(vscode)
 
-reporter.sendEvent('Hello World')
+reporter.sendTelemetryEvent('Hello World')
 ```
 
 # Contribute
