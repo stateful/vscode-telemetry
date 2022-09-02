@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build Package
-        run: npm build
+        run: npm run build
         env:
           NODE_ENV: production
       - name: Run tests
