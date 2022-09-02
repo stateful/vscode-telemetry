@@ -1,7 +1,7 @@
 import vscode from 'vscode'
 
 import { TelemetryReporter } from './extension/TelemetryReporter'
-import type { TelemetryPayload } from './types'
+import type { TelemetryEvent } from './types'
 
 export const createWebviewTelemetryPanel = (
     viewType: string,
@@ -10,9 +10,15 @@ export const createWebviewTelemetryPanel = (
     options?: vscode.WebviewPanelOptions & vscode.WebviewOptions
 ) => {
     const panel = vscode.window.createWebviewPanel(viewType, title, showOptions, options)
-    panel.webview.onDidReceiveMessage((e: TelemetryPayload) => (
-        TelemetryReporter[e.eventType](e.eventName, e.properties, e.measurements, e.sanitize))
-    )
+    panel.webview.onDidReceiveMessage((e: TelemetryEvent) => {
+        const payload = e.__telemetryEvent__
+        TelemetryReporter[payload.eventType](
+            payload.eventName,
+            payload.properties,
+            payload.measurements,
+            payload.sanitize
+        )
+    })
 
     return panel
 }

@@ -6,7 +6,8 @@ import type {
 } from '@vscode/extension-telemetry'
 
 import { BaseTelemetryReporter } from '../BaseTelemetryReporter.js'
-import type { Events, EventTypes } from '../types'
+import { PAYLOAD_KEY } from '../constants'
+import type { TelemetryEvent, EventTypes } from '../types'
 
 export class TangleTelemetryReporter extends BaseTelemetryReporter {
     static configure (vscode: WebviewApi<unknown>) {
@@ -16,21 +17,21 @@ export class TangleTelemetryReporter extends BaseTelemetryReporter {
                 properties?: TelemetryEventProperties | RawTelemetryEventProperties,
                 measurements?: TelemetryEventMeasurements,
                 sanitize?: boolean
-            ) => vscode.postMessage(<Events>{
-                __telemetryEvent__: { eventType, eventName, properties, measurements, sanitize }
+            ) => vscode.postMessage(<TelemetryEvent>{
+                [PAYLOAD_KEY]: { eventType, eventName, properties, measurements, sanitize }
             })
         }
 
         this.reporter = {
             telemetryLevel: 'all',
             dispose: () => Promise.resolve({}),
-            sendTelemetryEvent: handlerFunction('sendEvent'),
-            sendRawTelemetryEvent: handlerFunction('sendRawEvent'),
-            sendDangerousTelemetryEvent: handlerFunction('sendDangerousEvent'),
-            sendTelemetryErrorEvent: handlerFunction('sendErrorEvent'),
-            sendDangerousTelemetryErrorEvent: handlerFunction('sendDangerousErrorEvent'),
-            sendTelemetryException: handlerFunction('sendException'),
-            sendDangerousTelemetryException: handlerFunction('sendDangerousException')
+            sendTelemetryEvent: handlerFunction('sendTelemetryEvent'),
+            sendRawTelemetryEvent: handlerFunction('sendRawTelemetryEvent'),
+            sendDangerousTelemetryEvent: handlerFunction('sendDangerousTelemetryEvent'),
+            sendTelemetryErrorEvent: handlerFunction('sendTelemetryErrorEvent'),
+            sendDangerousTelemetryErrorEvent: handlerFunction('sendDangerousTelemetryErrorEvent'),
+            sendTelemetryException: handlerFunction('sendTelemetryException'),
+            sendDangerousTelemetryException: handlerFunction('sendDangerousTelemetryException')
         }
         return this.reporter
     }

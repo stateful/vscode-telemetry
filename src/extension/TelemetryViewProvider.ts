@@ -1,7 +1,7 @@
 import vscode from 'vscode'
 
 import { TelemetryReporter } from './TelemetryReporter'
-import type { TelemetryPayload } from '../types'
+import type { TelemetryEvent } from '../types'
 
 export class TelemetryViewProvider implements vscode.WebviewViewProvider {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -11,8 +11,14 @@ export class TelemetryViewProvider implements vscode.WebviewViewProvider {
 
     async resolveWebviewView (webviewView: vscode.WebviewView, context: vscode.WebviewViewResolveContext, token: vscode.CancellationToken) {
         await this.resolveWebviewTelemetryView(webviewView, context, token)
-        webviewView.webview.onDidReceiveMessage((e: TelemetryPayload) => (
-            TelemetryReporter[e.eventType](e.eventName, e.properties, e.measurements, e.sanitize))
-        )
+        webviewView.webview.onDidReceiveMessage((e: TelemetryEvent) => {
+            const payload = e.__telemetryEvent__
+            TelemetryReporter[payload.eventType](
+                payload.eventName,
+                payload.properties,
+                payload.measurements,
+                payload.sanitize
+            )
+        })
     }
 }
