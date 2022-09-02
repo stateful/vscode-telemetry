@@ -16,6 +16,10 @@ test('createWebviewTelemetryPanel', () => {
     expect(panel.webview.onDidReceiveMessage).toBeCalledTimes(1)
 
     const handler = vi.mocked(panel.webview.onDidReceiveMessage).mock.calls[0][0]
+
+    handler({ foo: 'bar' })
+    expect(TelemetryReporter.sendTelemetryEvent).toBeCalledTimes(0)
+
     handler({ __telemetryEvent__: { eventType: 'sendTelemetryEvent', eventName: 'foobar' } })
     expect(TelemetryReporter.sendTelemetryEvent).toBeCalledWith('foobar', undefined, undefined, undefined)
 })

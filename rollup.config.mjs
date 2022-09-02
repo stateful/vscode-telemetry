@@ -53,7 +53,7 @@ const esm = {
     },
     plugins: [
         resolve({ extensions }),
-        commonjs(),
+        commonjs({ defaultIsModuleExports: false }),
         typescript({
             tsconfig: './tsconfig.json',
             outDir: 'build/esm',
