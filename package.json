@@ -34,7 +34,7 @@
     "release:minor": "npm run release -- minor",
     "release:major": "npm run release -- major",
     "test": "run-s test:*",
-    "test:eslint": "eslint -c ./.eslintrc.js ./src/**/*.ts ./tests/**/*.ts",
+    "test:eslint": "eslint -c ./.eslintrc.cjs ./src/**/*.ts ./tests/**/*.ts",
     "test:unit": "vitest --coverage",
     "watch": "run-p watch:*",
     "watch:rollup": "npm run compile:rollup -- --watch"
