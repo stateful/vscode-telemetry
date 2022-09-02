@@ -11,7 +11,7 @@ import type {
 export class BaseTelemetryReporter {
     protected static reporter: TelemetryReporter | undefined
 
-    static #ensureToBeConfigured () {
+    static ensureToBeConfigured () {
         if (!this.reporter) {
             throw new Error('TelemetryReporter was not configured, call "TelemetryReporter.configure(context)" first!')
         }
@@ -25,7 +25,7 @@ export class BaseTelemetryReporter {
      * @param measurements The set of measurements to add to the event in the form of a string key  number value pair
      */
     static sendTelemetryEvent(eventName: string, properties?: TelemetryEventProperties, measurements?: TelemetryEventMeasurements) {
-        this.#ensureToBeConfigured()
+        this.ensureToBeConfigured()
         this.reporter!.sendTelemetryEvent(eventName, properties, measurements)
     }
 
@@ -36,7 +36,7 @@ export class BaseTelemetryReporter {
      * @param measurements The set of measurements to add to the event in the form of a string key  number value pair
      */
     static sendRawTelemetryEvent(eventName: string, properties?: RawTelemetryEventProperties, measurements?: TelemetryEventMeasurements) {
-        this.#ensureToBeConfigured()
+        this.ensureToBeConfigured()
         this.reporter!.sendRawTelemetryEvent(eventName, properties, measurements)
     }
 
@@ -49,7 +49,7 @@ export class BaseTelemetryReporter {
      * @param sanitize Whether or not to sanitize to the properties and measures, defaults to true
      */
     static sendDangerousTelemetryEvent(eventName: string, properties?: TelemetryEventProperties, measurements?: TelemetryEventMeasurements, sanitize?: boolean) {
-        this.#ensureToBeConfigured()
+        this.ensureToBeConfigured()
         this.reporter!.sendDangerousTelemetryEvent(eventName, properties, measurements, sanitize)
     }
 
@@ -61,7 +61,7 @@ export class BaseTelemetryReporter {
      * @param measurements The set of measurements to add to the event in the form of a string key  number value pair
      */
     static sendTelemetryErrorEvent(eventName: string, properties?: TelemetryEventProperties, measurements?: TelemetryEventMeasurements) {
-        this.#ensureToBeConfigured()
+        this.ensureToBeConfigured()
         this.reporter!.sendTelemetryErrorEvent(eventName, properties, measurements)
     }
 
@@ -74,7 +74,7 @@ export class BaseTelemetryReporter {
      * @param sanitize Whether or not to run the properties and measures through sanitiziation, defaults to true
      */
     static sendDangerousTelemetryErrorEvent(eventName: string, properties?: TelemetryEventProperties, measurements?: TelemetryEventMeasurements, sanitize?: boolean) {
-        this.#ensureToBeConfigured()
+        this.ensureToBeConfigured()
         this.reporter!.sendDangerousTelemetryErrorEvent(eventName, properties, measurements, sanitize)
     }
 
@@ -85,7 +85,7 @@ export class BaseTelemetryReporter {
      * @param measurements The set of measurements to add to the event in the form of a string key  number value pair
      */
     static sendTelemetryException(error: Error, properties?: TelemetryEventProperties, measurements?: TelemetryEventMeasurements) {
-        this.#ensureToBeConfigured()
+        this.ensureToBeConfigured()
         this.reporter!.sendTelemetryException(error, properties, measurements)
     }
 
@@ -98,7 +98,7 @@ export class BaseTelemetryReporter {
      * @param sanitize Whether or not to sanitize to the properties and measures, defaults to true
      */
     static sendDangerousTelemetryException(error: Error, properties?: TelemetryEventProperties, measurements?: TelemetryEventMeasurements, sanitize?: boolean) {
-        this.#ensureToBeConfigured()
+        this.ensureToBeConfigured()
         this.reporter!.sendDangerousTelemetryException(error, properties, measurements, sanitize)
     }
 }
