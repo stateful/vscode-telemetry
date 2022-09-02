@@ -42,7 +42,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: compiled-package
-          path: dist/
+          path: build/
 
   release:
     needs: test
@@ -65,7 +65,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: compiled-package
-          path: dist/
+          path: build/
       - name: Release
         run: npm run release:ci -- ${{github.event.inputs.releaseType}} ${{github.event.inputs.additionalFlags}}
         env:

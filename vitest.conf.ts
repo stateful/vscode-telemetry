@@ -8,7 +8,7 @@ export default defineConfig({
          * not to ESM ported packages
          */
         exclude: [
-            'dist', '.idea', '.git', '.cache',
+            'build', '.idea', '.git', '.cache',
             '**/node_modules/**', '__mocks__'
         ],
         coverage: {
