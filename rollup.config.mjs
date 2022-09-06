@@ -75,7 +75,8 @@ const cjs = {
         dir: 'build/cjs'
     },
     plugins: [
-        ...esm.plugins.slice(0, 2),
+        resolve({ extensions }),
+        commonjs({ defaultIsModuleExports: false }),
         typescript({
             tsconfig: './tsconfig.json',
             outDir: 'build/cjs',
@@ -83,9 +84,31 @@ const cjs = {
             compilerOptions
         }),
         createPackageJSON('cjs', 'commonjs'),
-        ...esm.plugins.slice(4)
+        cleanup({ comments: 'none' })
     ],
     external: ['vscode']
 }
 
-export default [webview, esm, cjs]
+/** @type {import('rollup').RollupOptions} */
+const browser = {
+    input: 'src/index.ts',
+    output: {
+        ...esm.output,
+        dir: 'build/browser'
+    },
+    plugins: [
+        resolve({ extensions, browser: true }),
+        commonjs({ defaultIsModuleExports: false }),
+        typescript({
+            tsconfig: './tsconfig.json',
+            outDir: 'build/browser',
+            declarationDir: 'build/browser',
+            compilerOptions
+        }),
+        createPackageJSON(),
+        cleanup({ comments: 'none' }),
+    ],
+    external: ['vscode']
+}
+
+export default [webview, esm, browser, cjs]
