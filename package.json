@@ -48,22 +48,22 @@
     "@types/node": "^18.7.14",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
-    "@vitest/coverage-c8": "^0.22.1",
+    "@vitest/coverage-c8": "^0.28.1",
     "c8": "^7.12.0",
     "eslint": "^8.23.0",
     "eslint-plugin-import": "^2.26.0",
     "npm-run-all": "^4.1.5",
     "release-it": "^15.4.1",
-    "rollup": "^2.79.0",
+    "rollup": "^2.79.1",
     "rollup-plugin-cleanup": "^3.2.1",
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.8.2",
-    "vitest": "^0.22.1"
+    "vitest": "^0.28.1"
   },
   "dependencies": {
     "@types/vscode": "^1.70.0",
     "@types/vscode-webview": "^1.57.0",
     "@vscode/extension-telemetry": "^0.6.2",
-    "tangle": "^2.1.0"
+    "tangle": "^3.0.0"
   }
 }
