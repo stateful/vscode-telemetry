@@ -13,14 +13,14 @@
     "url": "https://github.com/stateful/vscode-telemetry/issues"
   },
   "type": "module",
-  "types": "./build/index.d.ts",
+  "types": "./build/build/index.d.ts",
   "main": "./build/cjs/index.js",
   "module": "./build/esm/index.js",
   "browser": "./build/browser/index.js",
   "exports": {
     "./webview": "./build/webview.js",
     ".": {
-      "types": "./build/index.d.ts",
+      "types": "./build/build/index.d.ts",
       "require": "./build/cjs/index.js",
       "browser": "./build/browser/index.js",
       "import": "./build/esm/index.js"
