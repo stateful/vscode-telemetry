@@ -4,9 +4,9 @@ import path from 'node:path'
 import resolve from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
 import commonjs from '@rollup/plugin-commonjs'
+import terser from '@rollup/plugin-terser'
 
 import cleanup from 'rollup-plugin-cleanup'
-import { terser } from 'rollup-plugin-terser'
 
 const extensions = ['.js', '.ts']
 const compilerOptions = { declaration: true, declarationMap: true }
@@ -31,6 +31,7 @@ const webview = {
     external: ['vscode'],
     plugins: [
         typescript({
+            outputToFilesystem: true,
             tsconfig: './tsconfig.json',
             declarationDir: 'build',
             compilerOptions
@@ -55,6 +56,7 @@ const esm = {
         resolve({ extensions }),
         commonjs({ defaultIsModuleExports: false }),
         typescript({
+            outputToFilesystem: true,
             tsconfig: './tsconfig.json',
             outDir: 'build/esm',
             declarationDir: 'build/esm',
@@ -78,6 +80,7 @@ const cjs = {
         resolve({ extensions }),
         commonjs({ defaultIsModuleExports: false }),
         typescript({
+            outputToFilesystem: true,
             tsconfig: './tsconfig.json',
             outDir: 'build/cjs',
             declarationDir: 'build/cjs',
@@ -100,6 +103,7 @@ const browser = {
         resolve({ extensions, browser: true }),
         commonjs({ defaultIsModuleExports: false }),
         typescript({
+            outputToFilesystem: true,
             tsconfig: './tsconfig.json',
             outDir: 'build/browser',
             declarationDir: 'build/browser',
