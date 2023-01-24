@@ -62,7 +62,7 @@
     "vitest": "^0.28.1"
   },
   "dependencies": {
-    "@types/vscode": "^1.74.0",
+    "@types/vscode": "1.70.0",
     "@types/vscode-webview": "^1.57.1",
     "@vscode/extension-telemetry": "^0.6.2",
     "tangle": "^3.0.0"

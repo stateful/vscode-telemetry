@@ -3,7 +3,7 @@ VS Code Telemetry [![Test Changes](https://github.com/stateful/vscode-telemetry/
 
 > A helper package for VS Code developers to send telemetry events from the extension host and any webview.
 
-While [`@vscode/extension-telemetry`](https://www.npmjs.com/package/@vscode/extension-telemetry) is recommended to be used for sending telemetry events within VS Code extensions, it requires some configuration to allow sending them across extension host and webviews. This package uses `@vscode/extension-telemetry` under the hood and helps to overcome that issue.
+While [`@vscode/extension-telemetry`](https://www.npmjs.com/package/@vscode/extension-telemetry) is recommended to be used for sending telemetry events within VS Code extensions (for VS Code `v1.70.0` and upwards), it requires some configuration to allow sending them across extension host and webviews. This package uses `@vscode/extension-telemetry` under the hood and helps to overcome that issue.
 
 # Install
 
