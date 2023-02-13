@@ -64,7 +64,7 @@
   "dependencies": {
     "@types/vscode": "1.70.0",
     "@types/vscode-webview": "^1.57.1",
-    "@vscode/extension-telemetry": "^0.6.2",
+    "@vscode/extension-telemetry": "^0.7.5",
     "tangle": "^3.0.0"
   }
 }
