@@ -59,7 +59,7 @@
     "rollup": "^3.10.1",
     "rollup-plugin-cleanup": "^3.2.1",
     "typescript": "^5.0.2",
-    "vitest": "^0.28.1"
+    "vitest": "^0.29.7"
   },
   "dependencies": {
     "@types/vscode": "1.70.0",
