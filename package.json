@@ -65,6 +65,6 @@
     "@types/vscode": "1.70.0",
     "@types/vscode-webview": "^1.57.1",
     "@vscode/extension-telemetry": "^0.6.2",
-    "tangle": "^3.0.0"
+    "tangle": "^4.0.0"
   }
 }
