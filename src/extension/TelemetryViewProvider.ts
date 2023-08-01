@@ -22,8 +22,7 @@ export class TelemetryViewProvider implements vscode.WebviewViewProvider {
             TelemetryReporter[payload.eventType](
                 payload.eventName,
                 payload.properties,
-                payload.measurements,
-                payload.sanitize
+                payload.measurements
             )
         })
     }

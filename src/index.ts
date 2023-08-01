@@ -1,7 +1,7 @@
 import vscode from 'vscode'
 
-import { TelemetryReporter } from './extension/TelemetryReporter'
-import { PAYLOAD_KEY } from './constants'
+import { TelemetryReporter } from './extension/TelemetryReporter.js'
+import { PAYLOAD_KEY } from './constants.js'
 import type { TelemetryEvent } from './types'
 
 export const createWebviewTelemetryPanel = (
@@ -21,13 +21,12 @@ export const createWebviewTelemetryPanel = (
         TelemetryReporter[payload.eventType](
             payload.eventName,
             payload.properties,
-            payload.measurements,
-            payload.sanitize
+            payload.measurements
         )
     })
 
     return panel
 }
 
-export * from './extension/TelemetryReporter'
-export * from './extension/TelemetryViewProvider'
+export * from './extension/TelemetryReporter.js'
+export * from './extension/TelemetryViewProvider.js'

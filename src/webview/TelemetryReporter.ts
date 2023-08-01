@@ -1,7 +1,6 @@
 import type { WebviewApi } from 'vscode-webview'
 import type {
     TelemetryEventProperties,
-    RawTelemetryEventProperties,
     TelemetryEventMeasurements
 } from '@vscode/extension-telemetry'
 
@@ -14,24 +13,24 @@ export class TangleTelemetryReporter extends BaseTelemetryReporter {
         function handlerFunction (eventType: EventTypes) {
             return (
                 eventName: string | Error,
-                properties?: TelemetryEventProperties | RawTelemetryEventProperties,
-                measurements?: TelemetryEventMeasurements,
-                sanitize?: boolean
+                properties?: TelemetryEventProperties,
+                measurements?: TelemetryEventMeasurements
             ) => vscode.postMessage(<TelemetryEvent>{
-                [PAYLOAD_KEY]: { eventType, eventName, properties, measurements, sanitize }
+                [PAYLOAD_KEY]: { eventType, eventName, properties, measurements }
             })
         }
 
         this.reporter = {
             telemetryLevel: 'all',
             dispose: () => Promise.resolve({}),
+            onDidChangeTelemetryLevel: () => {
+                throw new Error('onDidChangeTelemetryLevel not supported')
+            },
             sendTelemetryEvent: handlerFunction('sendTelemetryEvent'),
             sendRawTelemetryEvent: handlerFunction('sendRawTelemetryEvent'),
             sendDangerousTelemetryEvent: handlerFunction('sendDangerousTelemetryEvent'),
             sendTelemetryErrorEvent: handlerFunction('sendTelemetryErrorEvent'),
             sendDangerousTelemetryErrorEvent: handlerFunction('sendDangerousTelemetryErrorEvent'),
-            sendTelemetryException: handlerFunction('sendTelemetryException'),
-            sendDangerousTelemetryException: handlerFunction('sendDangerousTelemetryException')
         }
         return this.reporter
     }

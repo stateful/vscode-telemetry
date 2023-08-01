@@ -32,7 +32,7 @@ import vscode from "vscode";
 import { TelemetryReporter } from 'vscode-telemetry';
 
 export async function activate(context: vscode.ExtensionContext) {
-    TelemetryReporter.configure(context, process.env.INSTRUMENTATION_KEY!);
+    TelemetryReporter.configure(process.env.INSTRUMENTATION_KEY!);
     // ...
 }
 

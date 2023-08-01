@@ -5,6 +5,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
 import commonjs from '@rollup/plugin-commonjs'
 import terser from '@rollup/plugin-terser'
+import json from '@rollup/plugin-json'
 
 import cleanup from 'rollup-plugin-cleanup'
 
@@ -54,6 +55,7 @@ const esm = {
     },
     plugins: [
         resolve({ extensions }),
+        json(),
         commonjs({ defaultIsModuleExports: false }),
         typescript({
             outputToFilesystem: true,
@@ -78,6 +80,7 @@ const cjs = {
     },
     plugins: [
         resolve({ extensions }),
+        json(),
         commonjs({ defaultIsModuleExports: false }),
         typescript({
             outputToFilesystem: true,
@@ -101,6 +104,7 @@ const browser = {
     },
     plugins: [
         resolve({ extensions, browser: true }),
+        json(),
         commonjs({ defaultIsModuleExports: false }),
         typescript({
             outputToFilesystem: true,

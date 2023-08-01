@@ -25,8 +25,4 @@ test('BaseTelemetryReporter', () => {
     expect(reporter.sendTelemetryErrorEvent).toBeCalledTimes(1)
     BaseTelemetryReporter.sendDangerousTelemetryErrorEvent('sendDangerousTelemetryErrorEvent')
     expect(reporter.sendDangerousTelemetryErrorEvent).toBeCalledTimes(1)
-    BaseTelemetryReporter.sendTelemetryException(new Error('sendTelemetryException'))
-    expect(reporter.sendTelemetryException).toBeCalledTimes(1)
-    BaseTelemetryReporter.sendDangerousTelemetryException(new Error('sendDangerousTelemetryException'))
-    expect(reporter.sendDangerousTelemetryException).toBeCalledTimes(1)
 })

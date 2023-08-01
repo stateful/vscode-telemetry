@@ -21,5 +21,5 @@ test('createWebviewTelemetryPanel', () => {
     expect(TelemetryReporter.sendTelemetryEvent).toBeCalledTimes(0)
 
     handler({ __telemetryEvent__: { eventType: 'sendTelemetryEvent', eventName: 'foobar' } })
-    expect(TelemetryReporter.sendTelemetryEvent).toBeCalledWith('foobar', undefined, undefined, undefined)
+    expect(TelemetryReporter.sendTelemetryEvent).toBeCalledWith('foobar', undefined, undefined)
 })

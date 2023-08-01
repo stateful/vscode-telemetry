@@ -8,14 +8,13 @@ vi.mock('vscode')
 
 test('TangleTelemetryReporter', () => {
     const reporter = TangleTelemetryReporter.configure(vscode as any as WebviewApi<any>)
-    reporter.sendDangerousTelemetryEvent('foobar', { some: 'props' }, { mesaurements: 42 }, true)
+    reporter!.sendTelemetryErrorEvent('foobar', { some: 'props' }, { mesaurements: 42 })
     expect((vscode as any as WebviewApi<any>).postMessage).toBeCalledWith({
         __telemetryEvent__: {
             eventName: 'foobar',
-            eventType: 'sendDangerousTelemetryEvent',
+            eventType: 'sendTelemetryErrorEvent',
             measurements: { mesaurements: 42 },
-            properties: { some: 'props' },
-            sanitize: true
+            properties: { some: 'props' }
         }
     })
 })
