@@ -6,6 +6,7 @@ import typescript from '@rollup/plugin-typescript'
 import commonjs from '@rollup/plugin-commonjs'
 import terser from '@rollup/plugin-terser'
 import json from '@rollup/plugin-json'
+import alias from '@rollup/plugin-alias'
 
 import cleanup from 'rollup-plugin-cleanup'
 
@@ -20,6 +21,13 @@ const createPackageJSON = (dir = 'esm', type = 'module') => ({
         'utf-8'
     )
 })
+
+const dynamicImportAlias = {
+    entries: {
+        '@azure/functions-core': './src/mocks.ts',
+        'applicationinsights-native-metrics': './src/mocks.ts'
+    }
+}
 
 /** @type {import('rollup').RollupOptions} */
 const webview = {
@@ -56,6 +64,7 @@ const esm = {
     plugins: [
         resolve({ extensions }),
         json(),
+        alias(dynamicImportAlias),
         commonjs({ defaultIsModuleExports: false }),
         typescript({
             outputToFilesystem: true,
@@ -81,6 +90,7 @@ const cjs = {
     plugins: [
         resolve({ extensions }),
         json(),
+        alias(dynamicImportAlias),
         commonjs({ defaultIsModuleExports: false }),
         typescript({
             outputToFilesystem: true,
