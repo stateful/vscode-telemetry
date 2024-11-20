@@ -62,7 +62,7 @@ jobs:
             - name: Install dependencies
               run: npm install
             - name: Download built package
-              uses: actions/download-artifact@v2
+              uses: actions/download-artifact@v4
               with:
                   name: compiled-package
                   path: build/
