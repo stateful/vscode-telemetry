@@ -17,6 +17,10 @@
   "main": "./build/cjs/index.js",
   "module": "./build/esm/index.js",
   "browser": "./build/browser/index.js",
+  "engines": {
+    "vscode": "^1.85.0",
+    "node": ">=20.17.0"
+  },
   "exports": {
     "./webview": "./build/webview.js",
     ".": {
@@ -66,7 +70,7 @@
     "vitest": "^2.1.5"
   },
   "dependencies": {
-    "@types/vscode": "1.78.0",
+    "@types/vscode": "1.85.0",
     "@types/vscode-webview": "^1.57.5",
     "@vscode/extension-telemetry": "^0.9.7",
     "tangle": "^4.0.0"
